@@ -8,13 +8,13 @@ var qElm = document.getElementById("questions");
 
   var pos = 0;
 
-//  var grade = [];
+  var grade = [];
 
 var questions = [
   {
     title: "Question 1",
-    options: ["Answer 1", "Answer 2", "Answer 3"],
-    answer: "Answer 1",
+    options: ["Start The Quiz"],
+    answer: "Start The Quiz",
   },
   {
     title: "Question 2",
@@ -23,6 +23,11 @@ var questions = [
   },
   {
     title: "Question 3",
+    options: ["Answer 1a", "Answer 2b", "Answer 3c"],
+    answer: "Answer 1a",
+  },
+  {
+    title: "Question 4",
     options: ["Answer 1a", "Answer 2b", "Answer 3c"],
     answer: "Answer 1a",
   },
@@ -49,10 +54,10 @@ var questions = [
 // prev.addEventListener('click', moveBackwards, false);
 // next.addEventListener('click', moveFoward, false);
 
-// function moveFoward (evt) {
-//   pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
-//   draw();
-// }
+function moveFoward (evt) {
+  pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
+  draw();
+}
 
 // function moveBackwards(evt) {
 //   pos = (pos === 0) ? questions.length - 1 : pos - 1;
@@ -67,16 +72,16 @@ function draw () {
 }
 
 //-------------------------------
-// qElm.addEventListener('click', optionPicked, false);
+ qElm.addEventListener('click', optionPicked, false);
 
-// function optionPicked(evt) {
-//   var val = evt.target.innerText;
-//   var deck = questions[pos];
+function optionPicked(evt) {
+  var val = evt.target.innerText;
+  var deck = questions[pos];
 
-//   grade[pos] = (val === deck.answer) ? 1 : 0;
-
-//   moveFoward();
-// }
+  grade[pos] = (val === deck.answer) ? 1 : 0;
+  
+  moveFoward();
+}
 
 //-------------------------------
 function updateTitle (title) {
