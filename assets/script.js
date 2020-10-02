@@ -1,13 +1,14 @@
 
 //-------------------------------
-// var tElm = document.getElementById("title");
-// var qElm = document.getElementById("questions");
+var tElm = document.getElementById("title");
+var qElm = document.getElementById("questions");
 
-// var prev = document.getElementById('prev');
-// var next = document.getElementById('next');
+var prev = document.getElementById('prev');
+var next = document.getElementById('next');
 
-// var pos = 0;
-// var grade = [];
+ var pos = 0;
+
+ var grade = [];
 
 var questions = [
   {
@@ -29,66 +30,80 @@ var questions = [
 
 
 //-------------------------------
-var body = document.body;
-var h1El = document.createElement("h1");
-var h2El = document.createElement("h2");
-var btn = document.createElement("button");
-h1El.textContent = questions[0].title;
-h2El.textContent = "h2 tag"
-btn.textContent="button text"
-body.appendChild(h1El);
-body.appendChild(h2El)
-body.appendChild(btn);
+// var body = document.body;
+// var h1El = document.createElement("h1");
+
+ //var btn = document.createElement("button");
+// var btn2 = document.createElement("button");
+// h1El.textContent = questions[pos].title;
+
+// btn.textContent=questions[pos].options[0]
+// btn2.textContent=questions[pos].options[1]
+// body.appendChild(h1El);
+
+// body.appendChild(btn);
+// body.appendChild(btn2);
 
 
 // //-------------------------------
-// prev.addEventListener('click', moveBackwards, false);
-// next.addEventListener('click', moveFoward, false);
+prev.addEventListener('click', moveBackwards, false);
+next.addEventListener('click', moveFoward, false);
 
-// function moveFoward (evt) {
-//   pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
-//   draw();
-// }
+function moveFoward (evt) {
+  pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
+  draw();
+}
 
-// function moveBackwards(evt) {
-//   pos = (pos === 0) ? questions.length - 1 : pos - 1;
-//   draw();
-// }
+function moveBackwards(evt) {
+  pos = (pos === 0) ? questions.length - 1 : pos - 1;
+  draw();
+}
+//this function is called when page loads (Step 1)
+function draw () {
+  var deck = questions[pos];
 
-// function draw () {
-//   var deck = questions[pos];
+  updateTitle(deck.title);
+  updateOptions(deck.options);
+}
 
-//   updateTitle(deck.title);
-//   updateOptions(deck.options);
-// }
+//-------------------------------
+qElm.addEventListener('click', optionPicked, false);
 
-// //-------------------------------
-// qElm.addEventListener('click', optionPicked, false);
+function optionPicked(evt) {
+  var val = evt.target.innerText;
+  var deck = questions[pos];
 
-// function optionPicked(evt) {
-//   var val = evt.target.innerText;
-//   var deck = questions[pos];
+  grade[pos] = (val === deck.answer) ? 1 : 0;
 
-//   grade[pos] = (val === deck.answer) ? 1 : 0;
+  moveFoward();
+}
 
-//   moveFoward();
-// }
+//-------------------------------
+function updateTitle (title) {
+  tElm.innerText = title;
+}
 
-// //-------------------------------
-// function updateTitle (title) {
-//   tElm.innerText = title;
-// }
+function updateOptions(options) {
+  qElm.innerText = '';
+  for (var i = 0; i < options.length; i++) {
+    var txt = document.createTextNode(options[i]);    
+    var btn = document.createElement('button');    
+    btn.appendChild(txt);
+    qElm.appendChild(btn);
+    console.log.options.length
+  }
+}
+console.log.options.length
 
 // function updateOptions(options) {
 //   qElm.innerText = '';
-
 //   for (var i = 0; i < options.length; i++) {
-//     var txt = document.createTextNode(options[i]);
-//     var btn = document.createElement('button');
-
+//     var txt = document.createTextNode(options[i]);    
+//     var btn = document.createElement('button');    
 //     btn.appendChild(txt);
 //     qElm.appendChild(btn);
 //   }
 // }
 
-// updateQuestions(["Answer 1", "Answer 2", "Answer 3"]);
+//updateQuestions(["Answer 1", "Answer 2", "Answer 3"]);
+
