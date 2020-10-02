@@ -3,12 +3,12 @@
 var tElm = document.getElementById("title");
 var qElm = document.getElementById("questions");
 
-var prev = document.getElementById('prev');
-var next = document.getElementById('next');
+// var prev = document.getElementById('prev');
+// var next = document.getElementById('next');
 
- var pos = 0;
+  var pos = 0;
 
- var grade = [];
+//  var grade = [];
 
 var questions = [
   {
@@ -30,80 +30,72 @@ var questions = [
 
 
 //-------------------------------
-// var body = document.body;
-// var h1El = document.createElement("h1");
+//  var body = document.body;
+// // var h1El = document.createElement("h1");
 
- //var btn = document.createElement("button");
-// var btn2 = document.createElement("button");
-// h1El.textContent = questions[pos].title;
+//  var btn = document.createElement("button");
 
-// btn.textContent=questions[pos].options[0]
-// btn2.textContent=questions[pos].options[1]
-// body.appendChild(h1El);
+// // h1El.textContent = questions[pos].title;
 
-// body.appendChild(btn);
-// body.appendChild(btn2);
+//  btn.textContent=questions[pos].options[0]
+
+// // body.appendChild(h1El);
+
+//  body.appendChild(btn);
+
 
 
 // //-------------------------------
-prev.addEventListener('click', moveBackwards, false);
-next.addEventListener('click', moveFoward, false);
+// prev.addEventListener('click', moveBackwards, false);
+// next.addEventListener('click', moveFoward, false);
 
-function moveFoward (evt) {
-  pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
-  draw();
-}
+// function moveFoward (evt) {
+//   pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
+//   draw();
+// }
 
-function moveBackwards(evt) {
-  pos = (pos === 0) ? questions.length - 1 : pos - 1;
-  draw();
-}
+// function moveBackwards(evt) {
+//   pos = (pos === 0) ? questions.length - 1 : pos - 1;
+//   draw();
+// }
 //this function is called when page loads (Step 1)
 function draw () {
   var deck = questions[pos];
-
+  
   updateTitle(deck.title);
   updateOptions(deck.options);
 }
 
 //-------------------------------
-qElm.addEventListener('click', optionPicked, false);
+// qElm.addEventListener('click', optionPicked, false);
 
-function optionPicked(evt) {
-  var val = evt.target.innerText;
-  var deck = questions[pos];
+// function optionPicked(evt) {
+//   var val = evt.target.innerText;
+//   var deck = questions[pos];
 
-  grade[pos] = (val === deck.answer) ? 1 : 0;
+//   grade[pos] = (val === deck.answer) ? 1 : 0;
 
-  moveFoward();
-}
+//   moveFoward();
+// }
 
 //-------------------------------
 function updateTitle (title) {
   tElm.innerText = title;
 }
 
+
+
 function updateOptions(options) {
   qElm.innerText = '';
   for (var i = 0; i < options.length; i++) {
     var txt = document.createTextNode(options[i]);    
-    var btn = document.createElement('button');    
+    var btn = document.createElement("button");    
     btn.appendChild(txt);
     qElm.appendChild(btn);
-    console.log.options.length
+    
   }
-}
-console.log.options.length
+};
 
-// function updateOptions(options) {
-//   qElm.innerText = '';
-//   for (var i = 0; i < options.length; i++) {
-//     var txt = document.createTextNode(options[i]);    
-//     var btn = document.createElement('button');    
-//     btn.appendChild(txt);
-//     qElm.appendChild(btn);
-//   }
-// }
-
+//console.log(document.createTextNode(options[i])
 //updateQuestions(["Answer 1", "Answer 2", "Answer 3"]);
 
