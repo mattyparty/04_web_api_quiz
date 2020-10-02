@@ -12,7 +12,7 @@ var qElm = document.getElementById("questions");
 
 var questions = [
   {
-    title: "Question 1",
+    title: "Coding Quiz Challenge",
     options: ["Start The Quiz"],
     answer: "Start The Quiz",
   },
@@ -35,18 +35,7 @@ var questions = [
 
 
 //-------------------------------
-//  var body = document.body;
-// // var h1El = document.createElement("h1");
 
-//  var btn = document.createElement("button");
-
-// // h1El.textContent = questions[pos].title;
-
-//  btn.textContent=questions[pos].options[0]
-
-// // body.appendChild(h1El);
-
-//  body.appendChild(btn);
 
 
 
@@ -101,6 +90,6 @@ function updateOptions(options) {
   }
 };
 
-//console.log(document.createTextNode(options[i])
+
 //updateQuestions(["Answer 1", "Answer 2", "Answer 3"]);
 
