@@ -133,13 +133,20 @@ function subtracttime(){
 function endscreen(){
 
 
-tElm.innerText = "Game Over!"
+tElm.innerText = "Game Over!";
+//remove buttons
+qElm.remove()
+//remove timers
+timeEl.remove()
+
 //need to clear answer button 
 //add field for submit score
 //add button to save name
 //add button to start game over
  
+
 }
+
 
 
 
