@@ -5,6 +5,7 @@ var qElm = document.getElementById("questions");
 var scorestorage = localStorage.getItem("scorestorage")
 var timeEl = document.querySelector(".time");
 var secondsLeft = 100;
+var ingamescore = 0
 
 // var prev = document.getElementById('prev');
 // var next = document.getElementById('next');
@@ -48,20 +49,18 @@ var questions = [
 
 
 // //-------------------------------
-// prev.addEventListener('click', moveBackwards, false);
-// next.addEventListener('click', moveFoward, false);
 
-function moveFoward (evt) {
-  pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
-  draw();
-}
+  function moveFoward (evt) {if ((questions.length - 1)==(pos)){
+    endscreen();
 
-// function moveBackwards(evt) {
-//   pos = (pos === 0) ? questions.length - 1 : pos - 1;
-//   draw();
-// }
+  } else {
+        pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
+     
+        draw();}
+      }
 
-//this function is called when page loads (Step 1)
+
+//this function is called when page loads (Step 1) and on each answer
 function draw () {
   var deck = questions[pos];
   
@@ -78,6 +77,15 @@ function optionPicked(evt) {
 
   grade = grade + (10 * ((val === deck.answer) ? 1 : 0));
   localStorage.setItem("sscorestorage",grade)
+  //start timer on first question
+  if (pos===0){setTime()};
+  //subtract time on wrong answer
+  if( val !== deck.answer){subtracttime()}
+    else {
+      ingamescore = ingamescore + 10
+      
+    };
+    
   moveFoward();
 }
 
@@ -85,9 +93,7 @@ function optionPicked(evt) {
 function updateTitle (title) {
   tElm.innerText = title;
 }
-
-
-
+//update the answer buttons
 function updateOptions(options) {
   qElm.innerText = '';
   for (var i = 0; i < options.length; i++) {
@@ -98,32 +104,42 @@ function updateOptions(options) {
     
   }
 }
-
+//score board code in work
 function writetoscoreboard (){
-
-
 
 }
 
-////timer sectio is below
+////timer section is below
 function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
 
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
+    if(secondsLeft <= 0) {
+      clearInterval(timerInterval);      
       //Need to modify this to end game/then scrore
-      sendMessage();
+      //sendMessage();
+      endscreen()
     }
 
   }, 1000);
 }
-
+//subtract time for incorrect questions
 function subtracttime(){
     secondsLeft = secondsLeft - 10
 }
 
-// this will start the time when the game beings
-setTime();
+//end game/ Score page
+function endscreen(){
+
+
+tElm.innerText = "Game Over!"
+//need to clear answer button 
+//add field for submit score
+//add button to save name
+//add button to start game over
+ 
+}
+
+
 
