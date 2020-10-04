@@ -2,6 +2,8 @@ var todoInput = document.querySelector("#score-text");
 var scoreForm = document.querySelector("#score-form");
 var todoList = document.querySelector("#todo-list");
 var clearscore = document.querySelector("#clear-score");
+var playagain = document.querySelector("#play-again");
+var scorestoragex = localStorage.getItem("scorestorage");
 
 
 var todos = [];
@@ -11,8 +13,6 @@ init();
 function renderTodos() {
   // Clear todoList element and update todoCountSpan
   todoList.innerHTML = "";
-  //todoCountSpan.textContent = todos.length;
-
   // Render a new li for each todo
   for (var i = 0; i < todos.length; i++) {
     var todo = todos[i];
@@ -20,10 +20,6 @@ function renderTodos() {
     var li = document.createElement("li");
     li.textContent = todo;
     li.setAttribute("data-index", i);
-
-    // var button = document.createElement("button");
-    // button.textContent = "Complete";
-    // li.appendChild(button);
     todoList.appendChild(li);
   }
 }
@@ -49,30 +45,49 @@ function storeTodos() {
 
 // When form is submitted...
 scoreForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-  var todoText = todoInput.value.trim();
-  // Return from function early if submitted todoText is blank
-  if (todoText === "") {
-    return;
-  }
-
-  // Add new todoText to todos array, clear the input
-  todos.push(todoText);
-  todoInput.value = "";
-
-  // Store updated todos in localStorage, re-render the list
-  storeTodos();
-  renderTodos();
+  //put all event handling in a separate function
+  scoreboardinput(event)
+ 
 });
 
 function clearscores(){
     todos = [];
+    localStorage.setItem("todos", JSON.stringify(todos));
     renderTodos();
-    //todoList.remove();
-
-}
+ }
 clearscore.addEventListener("click",function(){
 clearscores();
-console.log("clear scores button");})
+clearscorestorage();
+;})
+
+function clearscorestorage(){
+  scorestoragex = "";
+  localStorage.setItem("scorestorage", JSON.stringify(scorestoragex))
+
+};
+
+function scoreboardinput(event){ 
+  event.preventDefault();  
+  var todoText = todoInput.value.trim();  
+  // Return from function early if submitted name is blank
+  if ((todoText === "") || (scorestoragex === ""))  {    
+    return;
+  }
+  // Add new Name to  players array, clear the input
+  todoText = todoText + "'s Score : " + scorestoragex;
+  todos.push(todoText);
+  todoInput.value = "";
+  // Store updated todos in localStorage, re-render the list
+  storeTodos();
+  renderTodos();
+  //clear scores so user can submit multiple times
+   clearscorestorage();
+   }
+
+  
+  
+  
+
+ 
 
 

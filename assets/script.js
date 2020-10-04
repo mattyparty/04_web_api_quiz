@@ -80,7 +80,7 @@ function optionPicked(evt) {
   var deck = questions[pos];
 
   grade = grade + (10 * ((val === deck.answer) ? 1 : 0));
-  localStorage.setItem("sscorestorage",grade)
+  localStorage.setItem("scorestorage",grade)
   //start timer on first question
   if (pos===0){setTime()};
   //subtract time on wrong answer
@@ -145,12 +145,12 @@ qElm.remove();
 timeEl.remove();
 
  
- var btn = document.createElement("button");    
- var txt = document.createTextNode("Button Text");
- btn.appendChild(txt);
+var btn = document.createElement("button");    
+var txt = document.createTextNode("Game Over Click Here");
+btn.appendChild(txt);
 scorecard.appendChild(btn);
 scorecard.addEventListener("click",function(){
-  document.location.href = "./assets/scoreboard.html";
+document.location.href = "./assets/scoreboard.html";
 
 }
 )
@@ -165,13 +165,13 @@ scorecard.addEventListener("click",function(){
 
 //alert screen for  right answers
 function alertright(){
-alertelment.innerText  = 'Alert Right!';
+//alertelment.innerText  = 'Alert Right!';
 
 
 }
 //alert screen for  wrong answers
 function alertwrong(){
-  alertelment.innerText  = 'Alert Wrong';
+  //alertelment.innerText  = 'Alert Wrong';
   
 
 }
