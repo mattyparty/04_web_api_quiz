@@ -2,10 +2,14 @@
 //-------------------------------
 var tElm = document.getElementById("title");
 var qElm = document.getElementById("questions");
-var scorestorage = localStorage.getItem("scorestorage")
+var alertelment = document.getElementById("alerts");
+var scorestorage = localStorage.getItem("scorestorage");
 var timeEl = document.querySelector(".time");
 var secondsLeft = 100;
-var ingamescore = 0
+var ingamescore = 0;
+var scorecard = document.getElementById("scorecard");
+//--------High score board-------------
+
 
 // var prev = document.getElementById('prev');
 // var next = document.getElementById('next');
@@ -63,9 +67,9 @@ var questions = [
 //this function is called when page loads (Step 1) and on each answer
 function draw () {
   var deck = questions[pos];
-  
   updateTitle(deck.title);
   updateOptions(deck.options);
+  removealert();
 }
 
 //-------------------------------
@@ -82,10 +86,11 @@ function optionPicked(evt) {
   //subtract time on wrong answer
   if( val !== deck.answer){subtracttime()}
     else {
-      ingamescore = ingamescore + 10
+      ingamescore = ingamescore + 10;
+      alertwrong()
       
     };
-    
+  alertright();  
   moveFoward();
 }
 
@@ -108,7 +113,6 @@ function updateOptions(options) {
 function writetoscoreboard (){
 
 }
-
 ////timer section is below
 function setTime() {
   var timerInterval = setInterval(function() {
@@ -126,7 +130,8 @@ function setTime() {
 }
 //subtract time for incorrect questions
 function subtracttime(){
-    secondsLeft = secondsLeft - 10
+    secondsLeft = secondsLeft - 10;
+    alertwrong();
 }
 
 //end game/ Score page
@@ -135,9 +140,20 @@ function endscreen(){
 
 tElm.innerText = "Game Over!";
 //remove buttons
-qElm.remove()
+qElm.remove();
 //remove timers
-timeEl.remove()
+timeEl.remove();
+
+ 
+ var btn = document.createElement("button");    
+ var txt = document.createTextNode("Button Text");
+ btn.appendChild(txt);
+scorecard.appendChild(btn);
+scorecard.addEventListener("click",function(){
+  document.location.href = "./assets/scoreboard.html";
+
+}
+)
 
 //need to clear answer button 
 //add field for submit score
@@ -146,6 +162,31 @@ timeEl.remove()
  
 
 }
+
+//alert screen for  right answers
+function alertright(){
+alertelment.innerText  = 'Alert Right!';
+
+
+}
+//alert screen for  wrong answers
+function alertwrong(){
+  alertelment.innerText  = 'Alert Wrong';
+  
+
+}
+
+ function alertpause(){
+  setTimeout(alertpause,5000);
+
+ } 
+
+ function removealert(){
+  // alertpause();
+  // alertelment.remove();
+  // console.log("remove alert Test")
+
+ }
 
 
 
