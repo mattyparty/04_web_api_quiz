@@ -1,4 +1,4 @@
-var todoInput = document.querySelector("#score-text");
+var scoreInput = document.querySelector("#score-text");
 var scoreForm = document.querySelector("#score-form");
 var scorelist = document.querySelector("#score-list");
 
@@ -12,36 +12,36 @@ var scorearray = [];
 
 init();
 
-function renderTodos() {
-  // Clear todoList element and update todoCountSpan
+function renderscores() {
+  // Clear scores element and update scorecountspan
   scorelist.innerHTML = "";
-  // Render a new li for each todo
+  // Render a new li for each score
   for (var i = 0; i < scorearray.length; i++) {
-    var todo = scorearray[i];
+    var scoredata = scorearray[i];
 
     var li = document.createElement("li");
-    li.textContent = todo;
+    li.textContent = scoredata;
     li.setAttribute("data-index", i);
     scorelist.appendChild(li);
   }
 }
 
 function init() {
-  // Get stored todos from localStorage
+  // Get stored scores from localStorage
   // Parsing the JSON string to an object
   var playerscores = JSON.parse(localStorage.getItem("playerstorage"));
 
-  // If todos were retrieved from localStorage, update the todos array to it
+  // If scores were retrieved from localStorage, update the scores array to it
   if (playerscores !== null) {
     scorearray = playerscores;
   }
 
-  // Render todos to the DOM
-  renderTodos();
+  // Render scores to the DOM
+  renderscores();
 }
 
-function storeTodos() {
-  // Stringify and set "todos" key in localStorage to todos array
+function storeScores() {
+  // Stringify playerstorage
   localStorage.setItem("playerstorage", JSON.stringify(scorearray));
 }
 
@@ -55,7 +55,7 @@ scoreForm.addEventListener("submit", function(event) {
 function clearscores(){
   scorearray = [];
     localStorage.setItem("playerstorage", JSON.stringify(scorearray));
-    renderTodos();
+    renderscores();
  }
 clearscore.addEventListener("click",function(){
 clearscores();
@@ -70,18 +70,18 @@ function clearscorestorage(){
 
 function scoreboardinput(event){ 
   event.preventDefault();  
-  var todoText = todoInput.value.trim();  
+  var scoreText = scoreInput.value.trim();  
   // Return from function early if submitted name is blank
-  if ((todoText === "") || (scorestoragex === ""))  {    
+  if ((scoreText === "") || (scorestoragex === ""))  {    
     return;
   }
   // Add new Name to  players array, clear the input
-  todoText = todoText + "'s Score : " + scorestoragex;
-  scorearray.push(todoText);
-  todoInput.value = "";
-  // Store updated todos in localStorage, re-render the list
-  storeTodos();
-  renderTodos();
+  scoreText = scoreText + "'s Score : " + scorestoragex;
+  scorearray.push(scoreText);
+  scoreInput.value = "";
+  // Store updated player scores in localStorage, re-render the list
+  storeScores();
+  renderscores();
   //clear scores so user can submit multiple times
    clearscorestorage();
    }

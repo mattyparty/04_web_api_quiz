@@ -39,7 +39,7 @@ var questions = [
   },
 ];
 // //-------------------------------
-
+// move forward in the array/questions
   function moveFoward (evt) 
     
   { 
@@ -68,9 +68,6 @@ function draw () {
 //-------------------------------
  qElm.addEventListener('click', optionPicked, false);
 
-//  function delay(){
-//    setTimeout(function(){ alert("Hello"); }, 3000);
-// }
 function optionPicked(evt) {
   var val = evt.target.innerText;
   var deck = questions[pos];
@@ -87,10 +84,7 @@ function optionPicked(evt) {
       ingamescore = ingamescore + 10;
         
     };
-   
-    
-    
-      
+         
       moveFoward(); 
    
 }
@@ -149,7 +143,6 @@ btn.appendChild(txt);
 scorecard.appendChild(btn);
 btn.className = "btn btn-primary btn-lg btn-block";
 scorecard.addEventListener("click",function(){
-  //scoreboard();
 document.location.href = "./assets/scoreboard.html";
 })
 
@@ -175,4 +168,3 @@ document.getElementById("highscoreslink").hidden = true;
 
 } 
 
-//removehighscorelink();
