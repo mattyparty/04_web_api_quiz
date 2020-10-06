@@ -9,15 +9,8 @@ var secondsLeft = 100;
 var ingamescore = 0;
 var scorecard = document.getElementById("scorecard");
 //--------High score board-------------
-
-
-// var prev = document.getElementById('prev');
-// var next = document.getElementById('next');
-
-  var pos = 0;
-
-  var grade = 0;
-
+var pos = 0;
+var grade = 0;
 var questions = [
   {
     title: "Coding Quiz Challenge",
@@ -45,36 +38,39 @@ var questions = [
     answer: "Answer 1a",
   },
 ];
-
-
-//-------------------------------
-
-
-
-
 // //-------------------------------
 
-  function moveFoward (evt) {if ((questions.length - 1)==(pos)){
+  function moveFoward (evt) 
+    
+  { 
+    if ((questions.length - 1)==(pos)){
+      removehighscorelink();
     endscreen();
 
   } else {
         pos = (pos === (questions.length - 1)) ? 0 : pos + 1;
-     
+        removehighscorelink();
         draw();}
-      }
+   
+      };
 
 
 //this function is called when page loads (Step 1) and on each answer
 function draw () {
+
+ 
   var deck = questions[pos];
   updateTitle(deck.title);
   updateOptions(deck.options);
-  removealert();
+  //removealert();
 }
 
 //-------------------------------
  qElm.addEventListener('click', optionPicked, false);
 
+//  function delay(){
+//    setTimeout(function(){ alert("Hello"); }, 3000);
+// }
 function optionPicked(evt) {
   var val = evt.target.innerText;
   var deck = questions[pos];
@@ -84,17 +80,23 @@ function optionPicked(evt) {
   //start timer on first question
   if (pos===0){setTime()};
   //subtract time on wrong answer
-  if( val !== deck.answer){subtracttime()}
+  if( val !== deck.answer){
+      subtracttime();
+      }
     else {
       ingamescore = ingamescore + 10;
-      alertwrong()
-      
+        
     };
-  alertright();  
-  moveFoward();
+   
+    
+    
+      
+      moveFoward(); 
+   
 }
 
 //-------------------------------
+//update the questions buttons
 function updateTitle (title) {
   tElm.innerText = title;
 }
@@ -104,15 +106,12 @@ function updateOptions(options) {
   for (var i = 0; i < options.length; i++) {
     var txt = document.createTextNode(options[i]);    
     var btn = document.createElement("button");    
+    btn.className = "btn btn-primary btn-lg btn-block";
     btn.appendChild(txt);
-    qElm.appendChild(btn);
-    
+    qElm.appendChild(btn);    
   }
 }
-//score board code in work
-function writetoscoreboard (){
 
-}
 ////timer section is below
 function setTime() {
   var timerInterval = setInterval(function() {
@@ -121,8 +120,6 @@ function setTime() {
 
     if(secondsLeft <= 0) {
       clearInterval(timerInterval);      
-      //Need to modify this to end game/then scrore
-      //sendMessage();
       endscreen()
     }
 
@@ -131,7 +128,7 @@ function setTime() {
 //subtract time for incorrect questions
 function subtracttime(){
     secondsLeft = secondsLeft - 10;
-    alertwrong();
+   
 }
 
 //end game/ Score page
@@ -139,55 +136,43 @@ function endscreen(){
 
 
 tElm.innerText = "Game Over!";
+
+
 //remove buttons
 qElm.remove();
 //remove timers
 timeEl.remove();
 
- 
 var btn = document.createElement("button");    
 var txt = document.createTextNode("Game Over Click Here");
 btn.appendChild(txt);
 scorecard.appendChild(btn);
+btn.className = "btn btn-primary btn-lg btn-block";
 scorecard.addEventListener("click",function(){
+  //scoreboard();
 document.location.href = "./assets/scoreboard.html";
-
-}
-)
-
-//need to clear answer button 
-//add field for submit score
-//add button to save name
-//add button to start game over
- 
-
-}
-
-//alert screen for  right answers
-function alertright(){
-//alertelment.innerText  = 'Alert Right!';
+})
 
 
 }
-//alert screen for  wrong answers
-function alertwrong(){
-  //alertelment.innerText  = 'Alert Wrong';
+
+
+function alerttest(){
+
+alertelment.innerText = "Test"
+
+};
+
+
+function alertremove(){
+
+  alertelment.remove();
   
+  }
 
-}
+function removehighscorelink(){
+document.getElementById("highscoreslink").hidden = true;
 
- function alertpause(){
-  setTimeout(alertpause,5000);
+} 
 
- } 
-
- function removealert(){
-  // alertpause();
-  // alertelment.remove();
-  // console.log("remove alert Test")
-
- }
-
-
-
-
+//removehighscorelink();

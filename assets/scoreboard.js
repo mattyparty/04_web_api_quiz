@@ -1,37 +1,39 @@
 var todoInput = document.querySelector("#score-text");
 var scoreForm = document.querySelector("#score-form");
-var todoList = document.querySelector("#todo-list");
+var scorelist = document.querySelector("#score-list");
+
+
 var clearscore = document.querySelector("#clear-score");
 var playagain = document.querySelector("#play-again");
 var scorestoragex = localStorage.getItem("scorestorage");
 
 
-var todos = [];
+var scorearray = [];
 
 init();
 
 function renderTodos() {
   // Clear todoList element and update todoCountSpan
-  todoList.innerHTML = "";
+  scorelist.innerHTML = "";
   // Render a new li for each todo
-  for (var i = 0; i < todos.length; i++) {
-    var todo = todos[i];
+  for (var i = 0; i < scorearray.length; i++) {
+    var todo = scorearray[i];
 
     var li = document.createElement("li");
     li.textContent = todo;
     li.setAttribute("data-index", i);
-    todoList.appendChild(li);
+    scorelist.appendChild(li);
   }
 }
 
 function init() {
   // Get stored todos from localStorage
   // Parsing the JSON string to an object
-  var storedTodos = JSON.parse(localStorage.getItem("todos"));
+  var playerscores = JSON.parse(localStorage.getItem("playerstorage"));
 
   // If todos were retrieved from localStorage, update the todos array to it
-  if (storedTodos !== null) {
-    todos = storedTodos;
+  if (playerscores !== null) {
+    scorearray = playerscores;
   }
 
   // Render todos to the DOM
@@ -40,7 +42,7 @@ function init() {
 
 function storeTodos() {
   // Stringify and set "todos" key in localStorage to todos array
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem("playerstorage", JSON.stringify(scorearray));
 }
 
 // When form is submitted...
@@ -51,8 +53,8 @@ scoreForm.addEventListener("submit", function(event) {
 });
 
 function clearscores(){
-    todos = [];
-    localStorage.setItem("todos", JSON.stringify(todos));
+  scorearray = [];
+    localStorage.setItem("playerstorage", JSON.stringify(scorearray));
     renderTodos();
  }
 clearscore.addEventListener("click",function(){
@@ -75,7 +77,7 @@ function scoreboardinput(event){
   }
   // Add new Name to  players array, clear the input
   todoText = todoText + "'s Score : " + scorestoragex;
-  todos.push(todoText);
+  scorearray.push(todoText);
   todoInput.value = "";
   // Store updated todos in localStorage, re-render the list
   storeTodos();
