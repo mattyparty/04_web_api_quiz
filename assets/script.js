@@ -18,24 +18,24 @@ var questions = [
     answer: "Start The Quiz",
   },
   {
-    title: "Question 2",
-    options: ["Answer a", "Answer b", "Answer c"],
-    answer: "Answer a",
+    title: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?",
+    options: ["last()", "put()", "push()","None of the above"],
+    answer: "push()",
   },
   {
-    title: "Question 3",
-    options: ["Answer 1a", "Answer 2b", "Answer 3c"," Answer 4c"],
-    answer: "Answer 1a",
+    title: "Which built-in method reverses the order of the elements of an array?",
+    options: ["changeOrder(order)", "reverse()", "sort(order)","None of the above"],
+    answer: "reverse()",
   },
   {
-    title: "Question 4",
-    options: ["Answer 1a", "Answer 2b", "Answer 3c"],
-    answer: "Answer 1a",
+    title: "Which of the following function of String object returns the characters in a string between two indexes into the string?",
+    options: ["slice()", "split()", "substr()","substring()"],
+    answer: "substring()",
   },
   {
-    title: "Question 5",
-    options: ["Answer 1a", "Answer 2b", "Answer 3c"],
-    answer: "Answer 1a",
+    title: "Which of the following function of String object returns the calling string value converted to upper case?",
+    options: ["toUpperCase()", "toString()", "toLocaleUpperCase()","substring()"],
+    answer: "toUpperCase()",
   },
 ];
 // //-------------------------------
