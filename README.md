@@ -26,4 +26,4 @@ I will say I did learn alot. I used boostrap and CSS to format the page. I didnt
 
 # Screen Shot of Deployed index page
 
-![Password Generator Screen Shot](https://raw.githubusercontent.com/mattyparty/04_web_api_quiz/main/week4assignment.png)
+![Password Generator Screen Shot](https://raw.githubusercontent.com/mattyparty/04_web_api_quiz/main/assets/Week4Assignment.png)
